@@ -7,6 +7,8 @@ appVersion: "1.0.0"
 
 keywords:
   - observability
+  - dogstack
+  - DOG
   - doris
   - grafana
   - opentelemetry
@@ -15,13 +17,12 @@ keywords:
   - metrics
   - logs
 
-home: https://github.com/apache/doris
-icon: https://doris.apache.org/img/doris-logo.svg
+home: https://github.com/velodb/DogStack.git
+icon: https://charts.velodb.io/images/doris.jpg
 
 maintainers:
-  - name: DOGStack Team
-    email: dev@doris.apache.org
-
+  - name: bingquanzhao
+    email: bingquan_zhao@icloud.com
 dependencies:
   # Doris Operator - only when using internal Doris
   # Provides CRDs for DorisCluster management
