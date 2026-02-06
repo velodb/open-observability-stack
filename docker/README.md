@@ -1,6 +1,6 @@
-# DOG Stack - Docker Compose
+# Open Observability Stack - Docker Compose
 
-DOG Stack (Doris + OTel + Grafana) 是一个完整的可观测性解决方案，所有组件都以独立的 Docker 镜像分发：
+Open Observability Stack (Doris + OTel + Grafana) 是一个完整的可观测性解决方案，所有组件都以独立的 Docker 镜像分发：
 
 - **Apache Doris** - 高性能实时分析数据库
 - **OpenTelemetry Collector** - 遥测数据采集网关
@@ -73,11 +73,39 @@ Docker Compose 基于默认 OTel Collector 配置暴露以下端口：
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/velodb/DogStack.git
-cd DogStack/docker
+git clone https://github.com/velodb/open-observability-stack.git
+cd open-observability-stack/docker
 ```
 
 ### 2. 启动服务
+
+如果已有 Apache Doris 集群，配置连接信息后以外部模式启动（仅部署 OTel Collector + Grafana）：
+
+```bash
+cp .env.example .env
+```
+
+编辑 `.env`，填入 Doris 连接地址：
+
+```bash
+# Doris FE HTTP 端点（用于 Stream Load）
+DORIS_FE_HTTP_ENDPOINT=http://<DORIS_FE_HOST>:<FE_HTTP_PORT>
+
+# Doris FE MySQL 端点（用于查询）
+DORIS_FE_MYSQL_ENDPOINT=<DORIS_FE_HOST>:<FE_MYSQL_PORT>
+
+# Doris 认证信息
+DORIS_USERNAME=root
+DORIS_PASSWORD=
+```
+
+然后启动服务：
+
+```bash
+docker compose -f docker-compose-without-doris.yaml up -d
+```
+
+如果没有 Doris 集群，直接使用默认配置启动完整技术栈（包含内置 Doris）：
 
 ```bash
 docker compose up -d
@@ -189,7 +217,7 @@ receivers:
 
 ## 数据 Schema
 
-DOG Stack 在 Doris 中自动创建三张主要表：
+Open Observability Stack 在 Doris 中自动创建三张主要表：
 
 | 表名 | 用途 |
 |------|------|
@@ -212,7 +240,7 @@ otel-cli exec \
   --endpoint localhost:4317 \
   --service my-service \
   --name "test-span" \
-  -- echo "Hello DOG Stack!"
+  -- echo "Hello Open Observability Stack!"
 ```
 
 ### 使用 curl (OTLP/HTTP)
@@ -230,7 +258,7 @@ curl -X POST http://localhost:4318/v1/logs \
         "logRecords": [{
           "timeUnixNano": "'$(date +%s)000000000'",
           "severityText": "INFO",
-          "body": {"stringValue": "Test log message from DOG Stack"}
+          "body": {"stringValue": "Test log message from Open Observability Stack"}
         }]
       }]
     }]
@@ -283,11 +311,23 @@ docker compose ps
 
 ## 停止服务
 
+内置 Doris 模式：
+
 ```bash
 # 停止服务（保留数据）
 docker compose down
 
 # 停止服务并删除数据卷
 docker compose down -v
+```
+
+外部 Doris 模式：
+
+```bash
+# 停止服务（保留数据）
+docker compose -f docker-compose-without-doris.yaml down
+
+# 停止服务并删除数据卷
+docker compose -f docker-compose-without-doris.yaml down -v
 ```
 

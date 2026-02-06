@@ -3,10 +3,10 @@
 apiVersion: 1
 
 providers:
-  - name: 'DOG Observability Dashboards'
+  - name: 'Open Observability Stack Dashboards'
     orgId: 1
-    folder: 'DOG Observability'
-    folderUid: dog-observability
+    folder: 'Open Observability Stack'
+    folderUid: oos-observability
     type: file
     disableDeletion: false
     updateIntervalSeconds: 30
