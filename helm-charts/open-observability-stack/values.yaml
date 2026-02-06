@@ -44,7 +44,7 @@ doris:
     cluster:
       fe:
         replicas: 1
-        image: apache/doris:fe-3.0.8
+        image: apache/doris:fe-4.0.3
         resources:
           requests:
             cpu: 2
@@ -57,7 +57,7 @@ doris:
 
       be:
         replicas: 1
-        image: apache/doris:be-3.0.8
+        image: apache/doris:be-4.0.3
         resources:
           requests:
             cpu: 2
@@ -240,7 +240,7 @@ dorisPlugin:
   # Plugin + Dashboards image (build from images/doris-plugin/)
   image:
     repository: velodb/doris-app-plugin
-    tag: "v1.0"
+    tag: "latest"
     pullPolicy: IfNotPresent
 
 # =============================================================================
