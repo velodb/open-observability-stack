@@ -8,7 +8,7 @@ This guide covers three ways to deploy AIObserve Stack. Choose the method that f
 | Kubernetes (Helm) | Production, scalable environments |
 | Manual | Custom setups, existing infrastructure |
 
-Each method deploys the core components: OpenTelemetry Collector, Apache Doris, and Grafana. For data collection configuration, see [Ingesting Data](docs/ingesting-data.md).
+Each method deploys the core components: OpenTelemetry Collector, Apache Doris, and Grafana with Doris App Plugin. For data collection configuration, see [Ingesting Data](docs/ingesting-data.md).
 
 # Docker Compose
 

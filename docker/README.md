@@ -1,6 +1,6 @@
 # AIObserve Stack - Docker Compose
 
-AIObserve Stack (Doris + OTel + Grafana) 是一个完整的可观测性解决方案，所有组件都以独立的 Docker 镜像分发：
+AIObserve Stack (Doris + OTel + Grafana with doris app plugin) 是一个完整的可观测性解决方案，所有组件都以独立的 Docker 镜像分发：
 
 - **Apache Doris** - 高性能实时分析数据库
 - **OpenTelemetry Collector** - 遥测数据采集网关

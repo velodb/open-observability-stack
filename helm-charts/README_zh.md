@@ -2,7 +2,7 @@
 
 [English](./README.md)
 
-**AIObserve Stack** 是一个完整的可观测性技术栈，使用 Apache Doris 作为 Traces、Metrics 和 Logs 的存储后端，结合 OpenTelemetry 和 Grafana。
+**AIObserve Stack** 是一个完整的可观测性技术栈（Doris OpenTelemetry Grafana Doris App Plugin），使用 Apache Doris 作为 Traces、Metrics 和 Logs 的存储后端，结合 OpenTelemetry 和 Grafana。
 
 默认情况下，Helm Chart 会部署所有核心组件，包括：
 

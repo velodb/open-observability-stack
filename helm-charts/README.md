@@ -2,7 +2,7 @@
 
 [中文文档](./README_zh.md)
 
-**AIObserve Stack** is a complete observability stack using Apache Doris as the storage backend for traces, metrics, and logs, with OpenTelemetry and Grafana.
+**AIObserve Stack** is a complete observability stack (Doris OpenTelemetry Grafana with Doris App Plugin) using Apache Doris as the storage backend for traces, metrics, and logs, with OpenTelemetry and Grafana.
 
 By default, the Helm chart provisions all core components, including:
 
