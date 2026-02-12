@@ -27,10 +27,7 @@ charts/*.tgz
 docker-compose.override.yml
 .docker/
 
-# Secrets and environment files
-.env
-.env.*
-!.env.example
+# Secrets and keys
 *.pem
 *.key
 secrets/
