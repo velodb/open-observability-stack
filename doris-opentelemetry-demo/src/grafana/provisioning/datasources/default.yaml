@@ -1,0 +1,34 @@
+# Copyright The OpenTelemetry Authors
+# SPDX-License-Identifier: Apache-2.0
+
+
+apiVersion: 1
+
+datasources:
+  - name: Doris
+    uid: doris
+    type: mysql
+    url: doris:9030
+    user: admin
+    editable: true
+    isDefault: true
+    jsonData:
+      database: otel
+      timezone: Asia/Shanghai
+    ensureJsonData:
+      password:
+
+  - name: Prometheus
+    uid: webstore-metrics
+    type: prometheus
+    url: http://prometheus:9090
+    editable: true
+    isDefault: false
+    jsonData:
+      exemplarTraceIdDestinations:
+        - datasourceUid: webstore-traces
+          name: trace_id
+
+        - url: http://localhost:8080/jaeger/ui/trace/$${__value.raw}
+          name: trace_id
+          urlDisplayLabel: View in Jaeger UI
