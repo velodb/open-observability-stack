@@ -60,6 +60,15 @@ processors:
     limit_mib: 1024
     spike_limit_mib: 256
 
+  # Transform processor - fix zero timestamps from SDKs that don't set TimeUnixNano
+  # Doris partitions by timestamp; epoch-0 rows have no matching partition and get rejected
+  transform:
+    error_mode: ignore
+    log_statements:
+      - context: log
+        statements:
+          - set(time_unix_nano, observed_time_unix_nano) where time_unix_nano == 0
+
 exporters:
   # Doris exporter - connects to EXTERNAL Doris instance
   # Uses FE HTTP port (8030) which routes Stream Load to the appropriate BE
@@ -142,5 +151,5 @@ service:
 
     logs:
       receivers: [otlp]
-      processors: [memory_limiter, batch]
+      processors: [memory_limiter, transform, batch]
       exporters: [doris, debug]
